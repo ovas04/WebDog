@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayuda un Perro</title>
+
+    <link href="css/estilos.css" rel="stylesheet"/>
+</head>
+<body>
+
+    <div class="contenedor" id="cabecero">
+        <h1> Busca un Perro</h1>
+    </div>
+
+        <div  style="text-align: center;">
+            <button style="cursor: pointer" onclick="buscarPerro()">
+                Haz Click
+            </button>
+        </div>
+
+
+    <div class="contenedor" style="text-align: center;">
+
+        <div  id="imagenes" >
+
+
+        </div>
+
+    </div>
+
+
+    <div class="contenedor"style="text-align: center;" >
+
+        <div >
+            <p style="text-align: center; color: white; font-weight: bolder; background-color: #3f51b5;">
+                Ponle nombre y enviaselo a algun amigo</p>
+        </div>
+     
+
+        <form id="forma">
+
+        <input  type="text" name="nombre" id="nombre" placeholder="Dale un nombre al perro"> 
+
+        <input style="text-align: center;" type="email" name="email" id="email" placeholder="Pon el correo de tu amigo">
+
+            </form>
+            <button style="text-align: center; cursor: pointer; width: 100%;" id="enviar" onclick="enviar()" >
+                Enviar
+            </button>
+        
+    </div>
+
+    <script src="js/app.js"></script>
+
+    <script>
+
+
+        buscarPerro = () => {
+        fetch('https://dog.ceo/api/breeds/image/random')
+        .then(response => response.json())
+        .then(data => { console.log(data.message)
+        
+            const image  = document.createElement('img');
+
+            image.src = data.message;
+
+            image.width = "350";
+
+            image.height = "350";
+
+            image.id = "actual"
+
+            try {
+
+            const imagenAnterior = document.getElementById("actual"); 
+
+            document.getElementById("imagenes").removeChild(imagenAnterior);
+
+            }
+            catch (error){
+
+                console.log(error)
+            }
+            finally{
+            document.getElementById("imagenes").appendChild(image);
+            }
+        }
+        );
+    };
+
+
+    </script>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
